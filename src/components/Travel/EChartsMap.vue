@@ -390,4 +390,25 @@ defineExpose({ renderMap })
   left: 0;
   z-index: 10;
 }
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+  .flight-map-container {
+    height: 350px;
+    border-radius: 16px;
+    box-shadow: 4px 4px 0px var(--border-dark, #1e293b);
+  }
+  .brital-card {
+    padding: 1rem;
+  }
+  .map-title {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .flight-map-container {
+    height: 280px;
+  }
+}
 </style>

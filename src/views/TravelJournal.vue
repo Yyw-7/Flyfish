@@ -141,5 +141,20 @@ onMounted(async () => {
   flex-direction: column;
   gap: 2rem;
   padding: 1.5rem;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .variety-container {
+    padding: 1rem;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .variety-container {
+    padding: 0.5rem;
+    gap: 0.75rem;
+  }
 }
 </style>

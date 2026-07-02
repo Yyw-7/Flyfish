@@ -58,35 +58,77 @@ const clearFilter = () => {
 
 <style scoped>
 .home-wrapper {
-  gap: 1.5rem; /* 子元素间距1.5rem */
+  gap: 1.5rem;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center; /* 水平居中 */
-  min-height: 100vh; /* 确保容器至少占满整个视口高度 */
+  align-items: center;
+  min-height: 100vh;
 }
 
+/* ===== 三栏 Grid 布局 — 左右对称，间距天然一致 ===== */
 .main-grid {
-  display: flex;
-  flex-direction: row; /* 水平排列 */
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 320px 1fr 320px;
+  gap: 1.5rem;
   width: 100%;
+  align-items: start;
 }
 
 .main-grid .left {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  min-width: 0;  /* 防止子元素撑破容器 */
+}
+
+.main-grid .center {
+  min-width: 0;
 }
 
 .main-grid .right {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  min-width: 0;
 }
 
-.main-grid center {
-  display: flex;
-  gap: 1.5rem;
+/* 侧栏卡片：限制最大宽度，防止过宽时拉伸 */
+.main-grid .left > *,
+.main-grid .right > * {
+  max-width: 100%;
+}
+
+/* ===== 响应式：侧栏收窄 ===== */
+@media (max-width: 1260px) {
+  .main-grid {
+    grid-template-columns: 280px 1fr 280px;
+    gap: 1rem;
+  }
+}
+
+/* ===== 响应式：左右两栏 + 日记换行到底部 ===== */
+@media (max-width: 1024px) {
+  .main-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .main-grid .center {
+    grid-column: 1 / -1;        /* 日记独占整行 */
+    order: 3;
+  }
+  .main-grid .right {
+    order: 2;
+  }
+}
+
+/* ===== 响应式：单栏堆叠 ===== */
+@media (max-width: 680px) {
+  .home-wrapper {
+    gap: 0.75rem;
+  }
+  .main-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
 }
 </style>

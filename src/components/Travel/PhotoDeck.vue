@@ -398,6 +398,16 @@ const nextPhoto = () => {
   }
 }
 
+@media (max-width: 640px) {
+  .album-center-stage {
+    gap: 1rem;
+  }
+  .deck-wrapper {
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+}
+
 .deck-wrapper {
   display: flex;
   flex-direction: column;

@@ -33,6 +33,7 @@
     max-width: 1320px;
     margin: 0 auto;
     width: 100%;
+    padding: 0 1rem;
     position: relative;
     z-index: 1;
 }
@@ -42,11 +43,30 @@ body {
     font-family: var(--font-main);
     color: var(--border-dark);
     padding: 1.5rem;
-    min-height: 100vh; // 100%的浏览器视口高度
+    min-height: 100vh;
     overflow-x: hidden;
-    // 圆点纹理
     background-image: radial-gradient(rgba(30, 41, 59, 0.08) 1.5px, transparent 1.5px);
     background-size: 24px 24px;
+}
+
+/* ===== 响应式：全局 ===== */
+@media (max-width: 900px) {
+    #app {
+        padding: 0 0.5rem;
+    }
+    body {
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 640px) {
+    #app {
+        padding: 0 0.25rem;
+    }
+    body {
+        padding: 0.5rem;
+        background-size: 18px 18px;
+    }
 }
 
 /* 隐藏滚动条 */

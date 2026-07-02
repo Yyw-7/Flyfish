@@ -176,7 +176,7 @@ onMounted(async () => {
       secondary-text="重置"
       :show-secondary="true"
       secondary-action="reset"
-      width="612px"
+      width="100%"
       :hole-spacing="32"
       :min-coils="5"
       :max-coils="16"
@@ -248,9 +248,8 @@ onMounted(async () => {
 
 <style scoped>
 .diary-page {
-  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 2rem;
+  width: 100%;
 }
 
 /* 统计信息 */

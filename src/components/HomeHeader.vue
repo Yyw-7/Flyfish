@@ -4,7 +4,7 @@
   子组件：WeatherOverlay / WizardAvatar / WeatherPanel / VinylPlayer
 -->
 <template>
-  <BaseCard width="1320px" style="padding: 0rem">
+  <BaseCard width="100%" style="padding: 0rem; max-width: 1320px">
     <div
       class="cozy-hero-banner"
       :class="'bg-' + weather"
@@ -385,6 +385,21 @@ const onAvatarSpeak = () => {
   }
   .pull-bead-line {
     height: 50px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cozy-hero-banner {
+    padding: 1rem 0.75rem;
+    min-height: 300px;
+    border-radius: 18px;
+  }
+  .hero-content-wrapper {
+    gap: 1rem;
+  }
+  .hero-left-section {
+    gap: 1rem;
+    max-width: 100%;
   }
 }
 </style>

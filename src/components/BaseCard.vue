@@ -30,6 +30,8 @@ const cardStyle = {
   box-shadow: var(--shadow-flat);
   padding: 1.5rem;
   position: relative;
+  max-width: 100%;  /* 防止在小屏幕上溢出容器 */
+  box-sizing: border-box;
 }
 .card:hover {
   box-shadow: var(--shadow-flat-hover);
