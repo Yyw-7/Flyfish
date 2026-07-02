@@ -10,18 +10,16 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import * as echarts from 'echarts'
 
 async function bootstrap() {
-  // MSW：开发环境下启动 mock service worker
-  if (import.meta.env.DEV) {
-    const { worker } = await import('./mocks/browser')
-    await worker.start({
-      serviceWorker: {
-        url: `${import.meta.env.BASE_URL}mockServiceWorker.js`
-      },
-      onUnhandledRequest: 'bypass',
-      quiet: true
-    })
-    console.log('🔧 MSW Mock Service Worker 已启动')
-  }
+  // MSW：开发 + 生产环境均启动 mock service worker（项目无真实后端，数据层由 MSW + localStorage 提供）
+  const { worker } = await import('./mocks/browser')
+  await worker.start({
+    serviceWorker: {
+      url: `${import.meta.env.BASE_URL}mockServiceWorker.js`
+    },
+    onUnhandledRequest: 'bypass',
+    quiet: true
+  })
+  console.log('🔧 MSW Mock Service Worker 已启动')
 
   const app = createApp(App)
 
