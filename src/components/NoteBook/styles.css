@@ -1,0 +1,269 @@
+/* ===== 遮罩层 ===== */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.25s ease;
+}
+
+/* ===== 笔记本弹窗 ===== */
+.notebook-modal {
+  background: #fffdf6;
+  border: 4px solid var(--border-dark, #1e293b);
+  border-radius: 20px;
+  max-width: 100%;
+  box-shadow: 12px 12px 0px var(--border-dark, #1e293b);
+  position: relative;
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.25) forwards;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.notebook-modal.inline {
+  max-width: none;
+  box-shadow: 3px 3px 0px var(--border-dark, #1e293b);
+  border-radius: 12px;
+}
+
+/* ===== 线圈装订 ===== */
+.notebook-binder-rings {
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 12px 6px;
+  pointer-events: none;
+  z-index: 12;
+}
+
+.coil-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 18px;
+}
+
+.notebook-paper-hole {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fffdf6;
+  border: 2px solid var(--border-dark, #1e293b);
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.03);
+}
+
+.notebook-metal-coil {
+  width: 6px;
+  height: 16px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    180deg,
+    #1e293b 0 2px,
+    rgba(0, 0, 0, 0.05) 2px 4px
+  );
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* ===== 纸张内页 ===== */
+.notebook-paper-page {
+  padding: 1.5rem 2rem 1.5rem 3.5rem;
+  background-color: #fffdf5;
+  background-image: linear-gradient(
+    rgba(30, 41, 59, 0.08) 1.5px,
+    transparent 1.5px
+  );
+  background-size: 100% 32px;
+  line-height: 32px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.notebook-header {
+  border-bottom: 2px solid var(--border-dark, #1e293b);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.notebook-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--border-dark, #1e293b);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+/* ===== 表单 ===== */
+.notebook-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.form-group {
+  display: flex;
+  /* flex-direction: column; */
+
+  gap: 1rem;
+  min-width: 0;
+}
+
+.form-label {
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--border-dark, #1e293b);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap; /* ✅ 强制不换行 */
+  flex-shrink: 0; /* ✅ 防止被压缩 */
+}
+
+.form-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  box-sizing: border-box;
+  border: 2.5px solid var(--border-dark, #1e293b);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  outline: none;
+  background: white;
+  box-shadow: 3px 3px 0px var(--border-dark, #1e293b);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, border-color 0.2s ease;
+}
+
+.form-input:focus {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px var(--border-dark, #1e293b);
+}
+
+.form-input.error {
+  border-color: #ef4444;
+  box-shadow: 3px 3px 0px #ef4444;
+}
+
+textarea.form-input {
+  resize: vertical;
+  /* min-height: 6rem; */
+  height: 100%;
+}
+
+.form-error {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ef4444;
+  margin-top: 2px;
+  animation: shake 0.3s ease;
+}
+
+/* ===== 底部按钮 ===== */
+.notebook-footer {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.btn-submit,
+.btn-secondary {
+  padding: 8px 16px;
+  border: 2.5px solid var(--border-dark, #1e293b);
+  border-radius: 10px;
+  font-weight: 900;
+  font-size: 0.8rem;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px var(--border-dark, #1e293b);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-submit {
+  flex: 1;
+  background: #6ee7b7;
+  color: var(--border-dark, #1e293b);
+}
+
+.btn-submit:hover {
+  background: #34d399;
+}
+
+.btn-secondary {
+  flex: 0.5;
+  background: #fca5a5;
+  color: var(--border-dark, #1e293b);
+}
+
+.btn-secondary:hover {
+  background: #f87171;
+}
+
+.btn-submit:active,
+.btn-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--border-dark, #1e293b);
+}
+
+/* ===== 调整手柄 ===== */
+.resize-handle {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 18px;
+  height: 18px;
+  border-right: 4px solid rgba(30, 41, 59, 0.8);
+  border-bottom: 4px solid rgba(30, 41, 59, 0.8);
+  cursor: se-resize;
+  z-index: 20;
+}
+
+/* ===== 动画 ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 480px) {
+  .notebook-paper-page {
+    padding: 1.5rem 1.2rem 1.5rem 2.8rem;
+  }
+  .notebook-footer {
+    flex-direction: column;
+  }
+  .btn-secondary {
+    flex: 1;
+  }
+}

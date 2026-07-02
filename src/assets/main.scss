@@ -1,0 +1,129 @@
+:root {
+    --bg-canvas: #faf6f0;
+    /* 温润麦芽黄底色 */
+    --border-dark: #1e293b;
+    /* 经典深色粗边框 */
+
+    /* 柔和游戏马卡龙撞色 */
+    --color-pink: #ffccd5;
+    --color-pink-deep: #ff8fa3;
+    --color-mint: #cbf3f0;
+    --color-mint-deep: #2ec4b6;
+    --color-yellow: #fef08a;
+    --color-yellow-deep: #facc15;
+    --color-lavender: #e8dbfc;
+    --color-lavender-deep: #b18cf2;
+    --color-peach: #ffd8be;
+    --color-peach-deep: #f9a066;
+
+    --shadow-flat: 6px 6px 0px var(--border-dark);
+    --shadow-flat-sm: 3px 3px 0px var(--border-dark);
+    --shadow-flat-hover: 10px 10px 0px var(--border-dark);
+
+    --font-main: 'Noto Sans SC', 'Quicksand', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    max-width: 1320px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+body {
+    background-color: var(--bg-canvas);
+    font-family: var(--font-main);
+    color: var(--border-dark);
+    padding: 1.5rem;
+    min-height: 100vh; // 100%的浏览器视口高度
+    overflow-x: hidden;
+    // 圆点纹理
+    background-image: radial-gradient(rgba(30, 41, 59, 0.08) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+}
+
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-dark);
+    border-radius: 4px;
+}
+
+/* CSS Keyframe 动画 */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(120%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes floatSlow {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.85);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes particleFall {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--dx), var(--dy)) scale(0.6) rotate(360deg);
+        opacity: 0;
+    }
+}
