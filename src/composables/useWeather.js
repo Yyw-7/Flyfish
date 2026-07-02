@@ -1,15 +1,6 @@
 import { ref, watch } from 'vue'
 
 // 天气选项配置
-// export const WEATHER_OPTIONS = [
-//   { value: 'sunny', label: '☀️ 晴空万里' },
-//   { value: 'cloudy', label: '☁️ 慵懒多云' },
-//   { value: 'rainy', label: '🌧️ 细雨蒙蒙' },
-//   { value: 'snowy', label: '❄️ 雪花纷飞' },
-//   { value: 'windy', label: '💨 大风起兮' }
-// ]
-
-// 天气选项配置
 export const WEATHER_OPTIONS = [
   { value: 'sunny', label: '☀️' },
   { value: 'cloudy', label: '☁️' },
@@ -28,18 +19,33 @@ export const STAR_COUNT = 20
 export const MOON_STAR_COUNT = 8
 export const SUN_RAY_COUNT = 12
 
-export function useWeather(initialWeather = 'sunny') {
-  const weather = ref(initialWeather)
+// ===== 模块级共享天气状态（全局唯一，跨路由持久化） =====
+const WEATHER_STORAGE_KEY = 'flyfish_weather'
 
-  // 监听天气变化，动态向 body 添加/移除天气类
-  watch(
-    weather,
-    (newVal, oldVal) => {
-      if (oldVal) document.body.classList.remove('bg-' + oldVal)
-      document.body.classList.add('bg-' + newVal)
-    },
-    { immediate: true }
-  )
+function loadWeather() {
+  try {
+    const saved = localStorage.getItem(WEATHER_STORAGE_KEY)
+    if (saved && ['sunny', 'cloudy', 'rainy', 'snowy', 'windy'].includes(saved)) {
+      return saved
+    }
+  } catch { /* localStorage 不可用时忽略 */ }
+  return 'sunny'
+}
+
+const weather = ref(loadWeather())
+
+// 监听天气变化 — 全局仅此一份 watcher，确保任何路由下 body 类名始终正确
+watch(
+  weather,
+  (newVal, oldVal) => {
+    if (oldVal) document.body.classList.remove('bg-' + oldVal)
+    document.body.classList.add('bg-' + newVal)
+    try { localStorage.setItem(WEATHER_STORAGE_KEY, newVal) } catch { /* noop */ }
+  },
+  { immediate: true }
+)
+
+export function useWeather() {
 
   // ===== 天气特效样式生成器（确定性生成，不依赖 Math.random() 在函数内） =====
   // 使用 seed-based pseudo-random 确保每次渲染一致

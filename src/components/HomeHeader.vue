@@ -107,7 +107,7 @@ const {
   getLeafStyle,
   getNightStarStyle,
   getStarStyle
-} = useWeather('sunny')
+} = useWeather()
 
 const { isNightMode, toggleNightMode } = useDarkMode()
 const { triggerToast } = useToast()
